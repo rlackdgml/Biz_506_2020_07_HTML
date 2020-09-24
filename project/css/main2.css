@@ -67,7 +67,7 @@ div.toggle {
   ul li {
     display: block;
     text-align: center;
-    color: blue;
+    color: rgba(82, 22, 94, 0.938);
   }
 
   ul li:hover {
