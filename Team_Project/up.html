@@ -1,0 +1,59 @@
+<script>
+  // 함수를 변수처럼 선언하는 ES6 코드
+  // 함수를 변수처럼 선언하면 = JS 객체화된다.
+  // 함수 = 객체 = 변수
+  // 1급 함수 : 함수자체를 다른함수의 매개변수로 전달할 수 있다.
+  const password_check = function () {
+    let username = $("#username").val();
+    let password = $("#password").val();
+
+    if (password === "") {
+      $("div#msg_password").css("display", "block");
+      $("div#msg_password span").css("color", "red");
+      $("div#msg_password span").text(
+        "회원 정보를 수정하려면 비밀번호를 입력하세요"
+      );
+      $("#password").focus();
+      return false;
+    }
+    $.ajax({
+      url: "${rootPath}/member/password_check",
+      method: "POST",
+      data: {
+        username: username,
+        password: password,
+      },
+      beforeSend: function (ax) {
+        ax.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+      },
+      success: function (result) {
+        $("div#msg_password").css("display", "block");
+        if (result === "FAIL") {
+          //alert("이미 등록된 username입니다")
+          $("div#msg_password span").text("비밀번호가 일치하지 않습니다");
+          $("div#msg_password span").css("color", "red");
+          $("#password").focus();
+          return false;
+        } else {
+          $("div#msg_password").css("display", "none");
+          $("form").submit();
+        }
+      },
+      error: function () {
+        alert("서버 통신오류 입니다!");
+      },
+    });
+  };
+
+  $(function () {
+    $("#btn_save").click(function () {
+      password_check();
+    });
+  });
+</script>
+<style>
+  div#msg_username,
+  div#msg_password {
+    display: none;
+  }
+</style>
