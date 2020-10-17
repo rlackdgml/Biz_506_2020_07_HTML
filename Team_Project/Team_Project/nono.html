@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="static/css/lo.css" />
+    
+  </head>
+  <body>
+    <div class="form-group row">
+      <div class="col-sm-5"></div>
+      <div class="col-sm-2">
+        <div
+          class="btn-group mx-auto my-2"
+          role="group"
+          aria-label="Basic example"
+        >
+          <button
+            type="button"
+            id="likeBtn"
+            class="btn btn-info"
+            onclick="updateLH()"
+          >
+            &nbsp;
+            
+
+            <i class="fas fa-heart"></i> &nbsp;추천 &nbsp;<c:out
+              value="${artcl.likeCnt}"/>
+          </button>
+          <button
+            type="button"
+            id="hateBtn"
+            class="btn btn-secondary"
+            onclick=""
+          >
+          <i class="fas fa-heart-broken"></i></i>비추천<c:out
+              value="${artcl.hateCnt}"
+              
+            />
+          </button>
+        </div>
+        </div>
+      </div class =" col-sm-5"></div>
+    </div >
+  </body>
+</html>
